@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>It's Not If, It's When. | Scam Awareness</title>
+  <meta name="description" content="Learn scam tactics, warning signs and what to do if you're targeted. Anyone can be a target." />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>var t=null;try{t=localStorage.getItem("theme");}catch(e){}document.documentElement.setAttribute("data-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Scam awareness for everyone</p>
+        <h1>It's Not If,<br /><span class="accent">It's When.</span></h1>
+        <p>Scammers target everyone: students, parents, grandparents. Learn how scams work, spot the warning signs, and know exactly what to do when one reaches you.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="quiz.html">Test yourself: spot the scam</a>
+          <a class="btn btn-ghost" href="what-to-do.html">I think I'm being scammed</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three truths -->
+    <section class="section">
+      <div class="container">
+        <h2 class="center">Three things everyone should know</h2>
+        <p class="lead center">The truth about scams, without the scare tactics.</p>
+        <div class="grid grid-3" style="margin-top:32px">
+          <article class="card truth reveal">
+            <h3>Anyone can be a target</h3>
+            <p>Scammers exploit trust, emotions and lack of information, regardless of age or background. Being smart doesn't make you immune.</p>
+            <a href="scams.html">See who gets targeted →</a>
+          </article>
+          <article class="card truth reveal">
+            <h3>Scams are here to stay</h3>
+            <p>Scammers keep changing their methods, from SMS links to cloned voices. Staying informed is your best defence.</p>
+            <a href="scams.html">Latest scam tactics →</a>
+          </article>
+          <article class="card truth reveal">
+            <h3>Knowing what to do matters</h3>
+            <p>Know how to verify suspicious requests, contact your bank and report scams. Acting fast can save your money.</p>
+            <a href="what-to-do.html">Step-by-step guide →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats: verify figures against the latest SPF Annual Scams and Cybercrime Brief before presenting -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="center">The scale of the problem</h2>
+        <div class="stats" style="margin-top:28px">
+          <div class="reveal">
+            <div class="stat-num">51,500+</div>
+            <div class="stat-label">scam cases reported in Singapore in 2024</div>
+          </div>
+          <div class="reveal">
+            <div class="stat-num">S$1.1B</div>
+            <div class="stat-label">lost to scammers in a single year</div>
+          </div>
+          <div class="reveal">
+            <div class="stat-num">~10 min</div>
+            <div class="stat-label">on average between new scam reports</div>
+          </div>
+        </div>
+        <p class="source center">Source: Singapore Police Force, Annual Scams and Cybercrime Brief 2024.</p>
+      </div>
+    </section>
+
+    <!-- How scams work -->
+    <section class="section">
+      <div class="container">
+        <h2>How almost every scam works</h2>
+        <p class="lead">Different stories, same playbook. Once you see the pattern, you can spot it.</p>
+        <div class="flow" style="margin-top:28px">
+          <div class="card flow-step reveal">
+            <div class="num">1</div>
+            <h3>The Hook</h3>
+            <p>A message, call or ad grabs your attention: a prize, a job, a problem with your account.</p>
+          </div>
+          <div class="card flow-step reveal">
+            <div class="num">2</div>
+            <h3>The Pressure</h3>
+            <p>Fear, excitement or urgency stops you from thinking clearly. "Act now!"</p>
+          </div>
+          <div class="card flow-step reveal">
+            <div class="num">3</div>
+            <h3>The Ask</h3>
+            <p>Click a link, share an OTP, install an app, or transfer money.</p>
+          </div>
+          <div class="card flow-step reveal">
+            <div class="num">4</div>
+            <h3>The Disappearance</h3>
+            <p>Once they have your money or details, they block you and vanish.</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="warning-signs.html">Check a suspicious message</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Remember -->
+    <section class="section section-alt">
+      <div class="container center">
+        <h2>Remember: Stop. Check. Act.</h2>
+        <p class="lead">Stop and take a breath. Check with official sources. Act by calling your bank and reporting it. Share this site with someone who might need it.</p>
+        <div class="btn-row" style="justify-content:center">
+          <button class="btn btn-primary" id="share-site">Share this website</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById("share-site").addEventListener("click", async () => {
+      const data = { title: "It's Not If, It's When.", text: "Learn how to spot and stop scams:", url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          alert("Link copied! Paste it to your friends and family.");
+        } catch (e) {
+          prompt("Copy this link:", location.href);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

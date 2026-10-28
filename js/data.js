@@ -1,0 +1,182 @@
+// All site content lives here so the team can add or edit scams without touching HTML.
+
+const SCAM_CATEGORIES = ["All", "Phishing", "Impersonation", "Job", "Investment", "Shopping", "Romance", "Tech"];
+
+const SCAM_TYPES = [
+  {
+    title: "Phishing links (SMS / email)",
+    category: "Phishing",
+    isNew: false,
+    summary: "You get a message claiming your parcel is stuck, your account is locked or you've won something, with a link to 'fix' it.",
+    howItWorks: "The link opens a fake login page that looks like your bank, Singpass or a delivery company. Whatever you type, including OTPs, goes straight to the scammer.",
+    redFlags: ["Urgent deadline ('within 24 hours')", "Shortened or misspelt links", "Asks for login details or OTP"],
+    whatToDo: ["Don't click. Open the official app or type the website yourself", "Never share an OTP with anyone", "Report the message on ScamShield"],
+  },
+  {
+    title: "Government or bank impersonation",
+    category: "Impersonation",
+    isNew: false,
+    summary: "A caller says they're from the police, MOH, MAS or your bank, and that you're linked to a crime or your account is compromised.",
+    howItWorks: "They frighten you, then tell you to move money to a 'safe account' or install an app to 'help with investigations'.",
+    redFlags: ["Calls with a '+' prefix pretending to be local", "Threats of arrest", "Asks you to transfer money or keep it secret"],
+    whatToDo: ["Hang up. Government officers will never ask you to transfer money over the phone", "Call the agency back on its official number", "Call your bank if you shared any details"],
+  },
+  {
+    title: "Fake job offers",
+    category: "Job",
+    isNew: true,
+    summary: "'Earn $300/day liking videos or reviewing products!' Usually arrives on WhatsApp or Telegram.",
+    howItWorks: "You get small payouts at first to build trust. Then you're told to 'top up' money to unlock bigger tasks, and you never get it back.",
+    redFlags: ["High pay for very little work", "Unsolicited message from a stranger", "You must pay to earn"],
+    whatToDo: ["Real jobs never ask you to pay", "Check the company on official job portals", "Block and report the account"],
+  },
+  {
+    title: "Investment scams",
+    category: "Investment",
+    isNew: false,
+    summary: "Guaranteed high returns from crypto, forex or 'insider' stock tips, often pushed by someone you met online.",
+    howItWorks: "A slick app shows your 'profits' growing. When you try to withdraw, you're asked for fees or taxes, and then the platform disappears.",
+    redFlags: ["Guaranteed returns with 'no risk'", "Pressure to invest quickly", "Platform not on the MAS Financial Institutions Directory"],
+    whatToDo: ["Check the MAS Investor Alert List", "Never invest through links from strangers", "Talk to someone you trust first"],
+  },
+  {
+    title: "Online shopping scams",
+    category: "Shopping",
+    isNew: false,
+    summary: "Cheap concert tickets, phones or rental rooms on social media or marketplaces, where the item never arrives.",
+    howItWorks: "The seller insists on a bank transfer outside the platform, then blocks you once you've paid.",
+    redFlags: ["Price far below market", "Wants payment off-platform", "New account with no reviews"],
+    whatToDo: ["Pay only through the platform's protected checkout", "Meet in person for big-ticket items", "Search the seller's name and number online"],
+  },
+  {
+    title: "Romance scams",
+    category: "Romance",
+    isNew: false,
+    summary: "An online partner you've never met in person builds a relationship over weeks, then has an 'emergency'.",
+    howItWorks: "They claim to be stuck overseas, need medical bills paid, or want you to 'invest together'.",
+    redFlags: ["Avoids video calls", "Moves fast emotionally", "Any request for money"],
+    whatToDo: ["Never send money to someone you haven't met", "Reverse image search their photos", "Talk to friends or family about it"],
+  },
+  {
+    title: "Voice cloning and deepfake calls",
+    category: "Impersonation",
+    isNew: true,
+    summary: "A call or voice note that sounds exactly like a family member: 'Mum, I'm in trouble, please send money now.'",
+    howItWorks: "Scammers clone voices from short clips on social media and use them to create panic.",
+    redFlags: ["Unknown number using a familiar voice", "Extreme urgency", "Asks you not to tell anyone"],
+    whatToDo: ["Hang up and call the person back on their usual number", "Agree on a family 'safe word'", "Ask a question only they would know"],
+  },
+  {
+    title: "Malware and tech support",
+    category: "Tech",
+    isNew: true,
+    summary: "You're asked to download an app (APK) to buy food, book a service or 'fix' a virus warning.",
+    howItWorks: "The app gives scammers remote control of your phone, so they can read your OTPs and drain your bank account.",
+    redFlags: ["Download links outside the official app stores", "Asks for accessibility permissions", "Pop-up virus warnings with a phone number"],
+    whatToDo: ["Only install apps from official app stores", "If infected, switch to flight mode and call your bank", "Factory reset the device if needed"],
+  },
+  {
+    title: "Gaming and in-game item scams",
+    category: "Shopping",
+    isNew: false,
+    summary: "Free skins, cheap in-game currency, or a 'trade' that needs you to log in through a link.",
+    howItWorks: "Fake trade sites steal your game account, and anything linked to it, including saved cards.",
+    redFlags: ["'Free' rare items", "Login links sent in chat", "Trades outside the official system"],
+    whatToDo: ["Only trade through official in-game systems", "Turn on 2FA for game accounts", "Don't save cards on gaming accounts"],
+  },
+];
+
+const RED_FLAGS = [
+  { title: "Urgency and pressure", text: "'Act now or your account will be closed.' Scammers rush you so you don't stop to think." },
+  { title: "Asking for OTP or passwords", text: "No bank, government agency or company will ever ask for your OTP. Ever." },
+  { title: "Strange links", text: "Shortened URLs, misspellings (e.g. 'dbs-secure-login.co') or links sent by people you don't know." },
+  { title: "Too good to be true", text: "Huge returns, high pay for easy work, prizes for contests you never entered." },
+  { title: "Unusual payment methods", text: "Gift cards, crypto, or transfers to a personal account instead of a company account." },
+  { title: "Secrecy", text: "'Don't tell your family or the bank.' Scammers isolate you from people who could warn you." },
+];
+
+// Each checker item carries a weight; total weight decides the risk level.
+const CHECKER_ITEMS = [
+  { text: "The message came from someone I don't know or didn't expect", weight: 1 },
+  { text: "It's asking me to act urgently or threatens consequences", weight: 2 },
+  { text: "It contains a link or asks me to download an app", weight: 2 },
+  { text: "It asks for my OTP, password, Singpass or card details", weight: 4 },
+  { text: "It asks me to transfer money, buy gift cards or pay with crypto", weight: 4 },
+  { text: "The offer sounds too good to be true (prize, high pay, big returns)", weight: 2 },
+  { text: "They say they're from the government, police or my bank", weight: 2 },
+  { text: "They told me to keep it secret", weight: 3 },
+  { text: "There are spelling mistakes or the sender address looks odd", weight: 1 },
+];
+
+const QUIZ_QUESTIONS = [
+  {
+    channel: "SMS",
+    from: "+65 8xxx xxxx",
+    message: "SingPost: Your parcel could not be delivered due to incomplete address. Update within 12 hrs: http://sgpost-redeliver.co/track",
+    isScam: true,
+    explain: "Fake domain, urgent deadline, and it arrived from a personal mobile number. SingPost doesn't ask you to update details through random links.",
+  },
+  {
+    channel: "Telegram",
+    from: "Jessica (HR Recruiter)",
+    message: "Hi! We're hiring part-time. Just like YouTube videos and earn $50–$300/day. No experience needed. Interested?",
+    isScam: true,
+    explain: "A classic task scam. Unsolicited contact, unrealistic pay for trivial work. Eventually you'll be asked to 'top up' money.",
+  },
+  {
+    channel: "Banking app notification",
+    from: "Your bank (in the official app)",
+    message: "You made a PayNow transfer of $25.00 to TAN AH KOW at 14:02. If this wasn't you, call the number on the back of your card.",
+    isScam: false,
+    explain: "It's inside your official app, has no link, and tells you to use the number on your card rather than one in the message. This is a normal transaction alert.",
+  },
+  {
+    channel: "Phone call",
+    from: "+65 6xxx xxxx (shown as 'MOH')",
+    message: "This is the Ministry of Health. Your NRIC was used to buy illegal medicine. We are transferring you to the police. Do not hang up.",
+    isScam: true,
+    explain: "Government agencies don't transfer you to the police over the phone or threaten arrest. Caller ID can be faked.",
+  },
+  {
+    channel: "WhatsApp",
+    from: "Unknown number",
+    message: "Hi Mum, this is my new number, my phone broke Can you help me pay a bill urgently? I'll pay you back tomorrow.",
+    isScam: true,
+    explain: "The 'new number' trick. Call your child on their old number or ask a personal question before doing anything.",
+  },
+  {
+    channel: "Email",
+    from: "noreply@school.edu.sg",
+    message: "Reminder: Your module assignment is due on Friday 5pm. Please submit through the student portal as usual.",
+    isScam: false,
+    explain: "No link to click, no request for details or money, and it tells you to use the portal you already know. That looks legitimate.",
+  },
+  {
+    channel: "Carousell chat",
+    from: "seller_deals88",
+    message: "iPhone 16 Pro brand new $450 only! Many people want, pay deposit via bank transfer first to reserve. Cannot use CarouPay sorry.",
+    isScam: true,
+    explain: "Price far too low, pressure from 'many buyers', and a refusal to use the platform's protected payment.",
+  },
+  {
+    channel: "Instagram DM",
+    from: "crypto.mentor.official",
+    message: "I turned $500 into $12,000 in 2 weeks with my trading signals Guaranteed profit. DM me to join the VIP group!",
+    isScam: true,
+    explain: "No legitimate investment is guaranteed. 'VIP signals' from strangers are a common investment scam.",
+  },
+  {
+    channel: "SMS",
+    from: "DBS",
+    message: "DBS: Your OTP for login is 482913. Do not share this OTP with anyone. DBS will never ask for your OTP.",
+    isScam: false,
+    explain: "This is a normal OTP you requested yourself. The key is: never give it to anyone. If you didn't request it, someone may be trying to get into your account.",
+  },
+  {
+    channel: "Facebook Marketplace",
+    from: "Ah Seng Food Delivery",
+    message: "Order our durian promo! Download our app here to pay: durianfresh-sg.apk",
+    isScam: true,
+    explain: "Never install APK files from outside the official app stores. This is how malware takes over phones and drains bank accounts.",
+  },
+];

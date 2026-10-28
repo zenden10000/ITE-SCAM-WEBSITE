@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What To Do | It's Not If, It's When.</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>var t=null;try{t=localStorage.getItem("theme");}catch(e){}document.documentElement.setAttribute("data-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="container">
+        <p class="eyebrow">Knowing what to do matters</p>
+        <h1>What to do when a scam reaches you</h1>
+        <p>Being scammed is not your fault. What matters now is acting quickly. Every minute counts.</p>
+      </div>
+    </section>
+
+    <!-- Hotlines first, for people in a hurry -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Call now if you've lost money</h2>
+        <div class="hotlines" style="margin-top:20px">
+          <div class="card hotline">
+            <h3>Your bank</h3>
+            <p>Call the number on the back of your card to freeze your account.</p>
+          </div>
+          <div class="card hotline">
+            <h3>ScamShield Helpline</h3>
+            <a class="num" href="tel:1799">1799</a>
+            <p>24/7 advice if you're unsure.</p>
+          </div>
+          <div class="card hotline">
+            <h3>Police Hotline</h3>
+            <a class="num" href="tel:18002550000">1800-255-0000</a>
+            <p>Or report online at <a href="https://www.police.gov.sg/i-witness" target="_blank" rel="noopener">i-Witness</a>.</p>
+          </div>
+          <div class="card hotline">
+            <h3>Emergency</h3>
+            <a class="num" href="tel:999">999</a>
+            <p>If you're in danger or a crime is happening now.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" id="tab-after" aria-controls="panel-after" aria-selected="true">It's happening / it happened</button>
+          <button class="tab" role="tab" id="tab-before" aria-controls="panel-before" aria-selected="false">Before it happens</button>
+        </div>
+
+        <div role="tabpanel" id="panel-after" aria-labelledby="tab-after">
+          <h2>5 steps to take right away</h2>
+          <ol class="timeline" style="margin-top:24px">
+            <li>
+              <h3>Stop all contact</h3>
+              <p>Don't reply, click, or transfer anything more. Hang up the call. Scammers often come back with "recovery" offers, which are also scams.</p>
+            </li>
+            <li>
+              <h3>Verify through an official channel</h3>
+              <p>Not sure if it's real? Contact the organisation using the number on its <strong>official website or your card</strong>, never the one in the message.</p>
+            </li>
+            <li>
+              <h3>Call your bank immediately</h3>
+              <p>Ask them to freeze your account and cards, and stop or recall any transfers. Change your banking passwords. If you installed an unknown app, switch your phone to flight mode first.</p>
+            </li>
+            <li>
+              <h3>Report to the police</h3>
+              <p>File a report online or at a police station. Keep evidence: screenshots, phone numbers, bank account numbers and transaction references. Don't delete the chats.</p>
+            </li>
+            <li>
+              <h3>Warn others</h3>
+              <p>Tell family and friends, and report the number or account on the platform and on ScamShield. Your report could stop the next victim.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div role="tabpanel" id="panel-before" aria-labelledby="tab-before" hidden>
+          <h2>Protect yourself before it happens</h2>
+          <ol class="timeline prevent" style="margin-top:24px">
+            <li>
+              <h3>Install the ScamShield app</h3>
+              <p>It filters scam SMS and blocks known scam calls.</p>
+            </li>
+            <li>
+              <h3>Turn on two-factor authentication (2FA)</h3>
+              <p>On your email, social media, banking and gaming accounts. Never share the code with anyone.</p>
+            </li>
+            <li>
+              <h3>Lower your transaction limits</h3>
+              <p>Set daily PayNow and transfer limits in your banking app so losses stay small if something goes wrong. Turn on transaction alerts.</p>
+            </li>
+            <li>
+              <h3>Use your bank's money lock</h3>
+              <p>Many banks let you lock savings so they can't be moved digitally.</p>
+            </li>
+            <li>
+              <h3>Agree on a family safe word</h3>
+              <p>If a "family member" calls in a panic asking for money, ask for the word. This defeats voice-clone scams.</p>
+            </li>
+            <li>
+              <h3>Talk about it</h3>
+              <p>Share what you learn with parents and grandparents. Scams thrive on silence and shame.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Simple accessible tabs
+    const tabs = document.querySelectorAll('[role="tab"]');
+    tabs.forEach((tab) =>
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => {
+          const selected = t === tab;
+          t.setAttribute("aria-selected", selected);
+          document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
+        });
+      })
+    );
+  </script>
+</body>
+</html>

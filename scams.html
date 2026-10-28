@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scam Types | It's Not If, It's When.</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>var t=null;try{t=localStorage.getItem("theme");}catch(e){}document.documentElement.setAttribute("data-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="container">
+        <p class="eyebrow">Know your enemy</p>
+        <h1>Common scam types</h1>
+        <p>How each scam works, the red flags to look for, and what to do. Tags marked <strong>NEW TACTIC</strong> show how scammers keep adapting.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="toolbar">
+          <input type="search" class="search" id="scam-search" placeholder="Search scams (e.g. 'job', 'OTP', 'Telegram')" aria-label="Search scams" />
+        </div>
+        <div class="chips" id="scam-filters" role="group" aria-label="Filter by category" style="margin-bottom:24px"></div>
+        <div class="grid grid-2" id="scam-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Anyone can be a target -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Anyone can be a target</h2>
+        <p class="lead">These stories are illustrative, but based on common real-world cases.</p>
+        <div class="grid grid-2" style="margin-top:28px">
+          <div class="card persona reveal">
+            <div class="avatar" aria-hidden="true">W</div>
+            <blockquote>"I thought it was an easy part-time job. After the first $20 payout I trusted them and topped up $1,800 to 'unlock' tasks. Then they disappeared."
+              <cite>Wei, 19, student (job scam)</cite></blockquote>
+          </div>
+          <div class="card persona reveal">
+            <div class="avatar" aria-hidden="true">T</div>
+            <blockquote>"The caller knew my name and IC number. He said I was involved in money laundering. I was so scared I did everything he said."
+              <cite>Mdm Tan, 67, retiree (government impersonation)</cite></blockquote>
+          </div>
+          <div class="card persona reveal">
+            <div class="avatar" aria-hidden="true">D</div>
+            <blockquote>"I work in IT. I still clicked a parcel delivery link when I was tired after work. It only takes one moment."
+              <cite>Daniel, 34, engineer (phishing)</cite></blockquote>
+          </div>
+          <div class="card persona reveal">
+            <div class="avatar" aria-hidden="true">P</div>
+            <blockquote>"We chatted for three months. When he needed money for a 'customs fee', it felt like helping someone I loved."
+              <cite>Priya, 45, teacher (romance scam)</cite></blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/scams.js"></script>
+</body>
+</html>

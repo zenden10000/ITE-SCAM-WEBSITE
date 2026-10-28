@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warning Signs | It's Not If, It's When.</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>var t=null;try{t=localStorage.getItem("theme");}catch(e){}document.documentElement.setAttribute("data-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header"></header>
+
+  <main id="main">
+    <section class="hero page-hero">
+      <div class="container">
+        <p class="eyebrow">Spot it before it costs you</p>
+        <h1>Warning signs of a scam</h1>
+        <p>Scams change their stories, but the red flags stay the same. If you see even one, slow down.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>The 6 biggest red flags</h2>
+        <div class="grid grid-3 flag-grid" id="flag-grid" style="margin-top:24px"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="checker">
+      <div class="container">
+        <h2>Is this a scam? Check a message</h2>
+        <p class="lead">Got a suspicious message or call? Tick everything that applies.</p>
+        <div class="checker" style="margin-top:24px">
+          <form id="checker-form" onsubmit="return false"></form>
+          <aside class="card result-panel" aria-live="polite">
+            <h3>Risk level</h3>
+            <div class="risk-label" id="risk-label">Tick some boxes</div>
+            <div class="meter"><div class="meter-fill" id="meter-fill"></div></div>
+            <p id="risk-advice">Your result will appear here.</p>
+            <div class="btn-row" style="margin-top:12px">
+              <button class="btn btn-ghost" id="reset-checker" type="button">Reset</button>
+              <a class="btn btn-primary" href="what-to-do.html">What to do next</a>
+            </div>
+          </aside>
+        </div>
+        <p class="source">This tool is a guide only. If you're unsure, call the ScamShield Helpline at 1799.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checker.js"></script>
+</body>
+</html>
